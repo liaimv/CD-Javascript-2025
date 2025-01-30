@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Landpage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Jersey+20&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: #00030f;
+            --dots: #010a30;
+            --title: #ff0569;
+            --titleglow: #ffc2e4;
+            --subtitle: #FFFFFF;
+            --menu: #00faf6;
+            --menuglow: #bdfffe;
+            --hover: #ffee05;
+            --description: #FFFFFF;
+        }
+
+/*        .overlay {
+            position: absolute;
+            inset: -50%;
+            z-index: 10;
+            pointer-events: none;
+            background-image: url(images/noise1.png);
+            opacity: 15%;
+            animation: shift 0.2s linear infinite both;
+        }*/
+
+        @keyframes shift {
+            0% {
+                transform: translateX(0%) translateY(-1%)
+            }
+            100% {
+                transform: translateX(0%) translateY(1%)
+            }
+        }
+
+        html, body {
+            cursor: url(images/mouse_small.png), url(images/mouse_tiny.png), auto;
+        }
+
+        a {
+            cursor: url(images/click_small.png) 10 0, url(images/click_tiny.png) 5 0, pointer;
+            text-decoration: none;
+            color: var(--menu);
+            position: relative;
+            width: 300px;
+        }
+
+            a:hover {
+                color: var(--hover);
+            }
+
+            a:active {
+                color: var(--menu);
+            }
+
+        body {
+            background-color: var(--background);
+            background-image: radial-gradient(var(--dots) 2px, transparent 2px);
+            background-size: 20px 20px;
+            font-family: 'Anonymous Pro', sans-serif;
+            height: 105vh;
+            overflow: hidden;
+            /*            position: relative;*/
+        }
+
+        .grain {
+            margin: 0;
+            padding: 0;
+            top: -100px;
+            left: -100px;
+            width: 150vw;
+            height: 150vh;
+            content: '';
+            position: absolute;
+            background: repeating-radial-gradient(#000 0 0.001%, #fff 0 0.002%) 60% 60%/3000px 3000px, repeating-conic-gradient(#000 0 0.001%, #fff 0 0.002%) 60% 60%/3000px 3000px;
+            background-blend-mode: difference;
+            opacity: 20%;
+            z-index: 10;
+            pointer-events: none;
+            animation: noise 0.2s infinite alternate;
+        }
+
+        @keyframes noise {
+            100% {
+                background-position: 50% 0, 60% 50%;
+            }
+        }
+
+        section {
+            top: 30px;
+            margin: 50px;
+            z-index: 5;
+            position: relative;
+        }
+
+        figure {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: "Press Start 2P", serif;
+            font-size: 3vw;
+            color: var(--title);
+            margin-top: 50px;
+            text-shadow: 1px 1px 2px var(--titleglow), 0 0 1em var(--titleglow), 0 0 0.2em var(--titleglow);
+            letter-spacing: -1vw;
+            animation: blink 3s infinite linear alternate;
+        }
+
+        @keyframes blink {
+            60%, 70%, 79% {
+                opacity: 1;
+            }
+            65%, 67%, 76%, 78% {
+                opacity: 0.2;
+                text-shadow: 1px 1px 2px var(--titleglow), 0 0 0.1em var(--titleglow), 0 0 0.2em var(--titleglow);
+            }
+            66%, 69%, 77% {
+                opacity: 0.8;
+            }
+        }
+
+        h2 {
+            color: var(--subtitle);
+            font-family: "Aldrich", serif;
+            text-shadow: 1px 1px 2px var(--menuglow), 0 0 1em var(--menuglow), 0 0 0.2em var(--menuglow);
+            width: 315px;
+        }
+
+        article {
+            justify-content: center;
+            display: flex;
+        }
+
+        table {
+            color: var(--menu);
+            width: 100%;
+            margin-top: 20px;
+            margin-right: 25%;
+            margin-left: 25%;
+        }
+
+        tr {
+            text-align: center;
+            display: grid;
+            margin: 30px;
+        }
+
+        td {
+            display: flex;
+            justify-content: center;
+        }
+
+        .project {
+            text-transform: uppercase;
+            font-size: 40px;
+            font-family: "Jersey 20", serif;
+            text-align: center;
+        }
+
+        .title {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 30px;
+            font-family: "Aldrich", serif;
+            margin: 10px;
+            text-shadow: 1px 1px 2px var(--menuglow), 0 0 1em var(--menuglow), 0 0 0.2em var(--menuglow);
+        }
+
+        p {
+            position: absolute;
+            left: -90px;
+            top: 50%; 
+            transform: translateY(-50%);
+            margin: 0;
+            font-size: 60px;
+            font-family: "Pixelify Sans", serif;
+            font-weight: 500;
+            color: var(--hover);
+            display: none;
+        }
+
+        .title a:hover p {
+            display: block;
+        }
+
+        .description {
+            color: var(--description);
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            position: relative;
+            transition: opacity 0.5s ease, max-height 0.5s ease, transform 0.5s ease;
+            width: 100%;
+            transform: translateY(-10px);
+        }
+
+        .title:hover + .description {
+            opacity: 1;
+            max-height: 200px;
+            transform: translateY(0px);
+        }
+
+        @media only screen and (max-width: 1100px) {
+            table {
+                margin-right: 5%;
+                margin-left: 5%;
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            section {
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 5vw;
+                letter-spacing: -2vw;
+            }
+
+            h2 {
+                font-size: 4vw;
+                width: 47vw;
+            }
+
+            figure {
+                margin: 0;
+            }
+
+            table {
+                margin-right: 2%;
+                margin-left: 2%;
+            }
+
+            .project {
+                font-size: 7vw;
+            }
+
+            .title {
+                font-size: 5vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    <main>
+        <section>
+            <header>
+                <figure>
+                    <h2>CD Studio: Javascript</h2>
+                    <h2 style="text-align:right">Parsons School of Design Spring 2025</h2>
+                </figure>
+                <h1>
+                    <span class="letter 1-0">L</span>
+                    <span class="letter 1-1">I</span>
+                    <span class="letter 1-2">A</span>
+                    <span class="letter 1-3" style="margin-left:3vw">V</span>
+                    <span class="letter 1-4">I</span>
+                    <span class="letter 1-5">R</span>
+                    <span class="letter 1-6">A</span>
+                    <span class="letter 1-7">T</span>
+                    <span class="letter 1-8">E</span>
+                    <span class="letter 1-9">L</span>
+                    <span class="letter 1-10">L</span>
+                    <span class="letter 1-11">E</span>
+                </h1>
+            </header>
+            <article>
+                <table>
+                    <tr>
+                        <td class="title"><a href="http://b.parsons.edu/~viral695/parsons/assignments/index.html" target="_blank"><p>></p><span class="project">Project 1</span><br>Changing States</a></td>
+                        <td class="description">Design and develop a website that's principle focus is on changing between states. The states you choose can be a binary (day vs. night, messy vs. clean, wet vs. dry, hot vs. cold etc.) or exist more on a spectrum (the spectrum of color, temperature, sound volume, wealth, emotion etc.).</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><a href="http://b.parsons.edu/~viral695/parsons/assignments/index.html" target="_blank"><p>></p><span class="project">Project 2</span><br>Generative Tool</a></td>
+                        <td class="description">In this project, you will create your own tool using programming concepts like variables, loops, and conditionals. Just like the tools mentioned as examples, your tool will take some form of user input as material and transform it into a visual output. We will look at examples together in class.</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><a href="http://b.parsons.edu/~viral695/parsons/assignments/index.html" target="_blank"><p>></p><span class="project">Project 3</span><br>Sender Receiver</a></td>
+                        <td class="description">Design and develop a website which incorporates an external data feed, using one of the APIs discussed in class. You may also use another API or service that you have researched independently, so long as it provides a live data stream to work with. Consider how your specific design logic might change the meaning of said data, and how the user may (or may not) interact with the feed as they engage with your site.</td>
+                    </tr>
+                </table>
+            </article>
+            <footer>
+            </footer>
+        </section>
+    </main>
+    <!--<div class="overlay"></div>-->
+</body>
+</html>
